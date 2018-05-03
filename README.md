@@ -48,9 +48,9 @@ send_message(Socket) ->
     end.
 
 FunctionsList = [
-    {connect_fun, connect}, 
-    {handshake_fun, handshake}, 
-    {send_message_fun, send_message}
+    {connect_fun, fun connect/1}, 
+    {handshake_fun, fun handshake/1}, 
+    {send_message_fun, fun send_message/1}
 ],
 epipe:run(FunctionsList, {Host, Port, Opts}).
 
@@ -74,11 +74,11 @@ Would produce {ok, 3}
 sample2() -> 
     Fun1 = fun(Val) -> {ok, Val + 1} end,
     Fun2 = fun(Val) -> {error, "Can't process data"} end,
-    epipe:run([{step1 Fun1}, {step2, Fun2}, {step3, Fun1}], 0).
+    epipe:run([{step1, Fun1}, {step2, Fun2}, {step3, Fun1}], 0).
 ```
 
 
-Would produce {error, step2, "Can't process data"}, giving not only error reason,
+Would produce {error, step2, "Can't process data", 1}, giving not only error reason,
 but also would give a hint, about the failing step. 
 
 

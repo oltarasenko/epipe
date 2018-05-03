@@ -46,5 +46,22 @@ pipe_test_() ->
                 {ok, 2},
                 epipe:run([{f1, Fun1}, {f2, Fun2}], 0)
             )
+        end},
+        {"Example 1", fun() ->
+            Fun1 = fun(Val) -> {ok, Val + 1} end,
+            Fun2 = fun(Val) -> {ok, Val + 2} end,
+            ?assertEqual(
+                {ok, 3},
+                epipe:run([{add_one, Fun1}, {add_two, Fun2}], 0)
+            )
+        end},
+        {"Example 2", fun() ->
+            Fun1 = fun(Val) -> {ok, Val + 1} end,
+            Fun2 = fun(_Val) -> {error, "Can't process data"} end,
+
+            ?assertEqual(
+                {error, step2, "Can't process data", 1},
+                epipe:run([{step1, Fun1}, {step2, Fun2}, {step3, Fun1}], 0)
+            )
         end}
     ].
