@@ -1,5 +1,7 @@
-epipe
+epipe 
 =====
+
+[![Build Status](https://travis-ci.org/oltarasenko/epipe.svg?branch=master)](https://travis-ci.org/oltarasenko/epipe)
 
 Erlang pipes
 
