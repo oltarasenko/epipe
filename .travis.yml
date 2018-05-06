@@ -1,5 +1,10 @@
 language: erlang
 otp_release:
-  - 20.1
+  - 20.3
   - 19.0
-  - 18.2.1
+
+deploy:
+  provider: script
+  script: scripts/hex.sh
+  on:
+    tags: true
