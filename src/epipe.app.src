@@ -1,6 +1,6 @@
 {application, epipe,
  [{description, "Erlang pipes"},
-  {vsn, "0.1.0"},
+  {vsn, "0.1.1"},
   {registered, []},
   {applications,
    [kernel,
@@ -9,7 +9,7 @@
   {env,[]},
   {modules, []},
 
-  {maintainers, []},
+  {maintainers, ["Oleg Tarasenko", "Dmitriy Mazurin"]},
   {licenses, ["Apache 2.0"]},
-  {links, []}
+  {links, [{"Github & Docs", "https://github.com/oltarasenko/epipe"}]}
  ]}.
