@@ -2,6 +2,7 @@ epipe
 =====
 
 [![Build Status](https://travis-ci.org/oltarasenko/epipe.svg?branch=master)](https://travis-ci.org/oltarasenko/epipe)
+[![Hex pm](http://img.shields.io/hexpm/v/epipe.svg?style=flat)](https://hex.pm/packages/epipe) [![hex.pm downloads](https://img.shields.io/hexpm/dt/epipe.svg?style=flat)](https://hex.pm/packages/epipe)
 
 Erlang pipes
 
