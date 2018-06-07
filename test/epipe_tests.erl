@@ -63,5 +63,23 @@ pipe_test_() ->
                 {error, step2, "Can't process data", 1},
                 epipe:run([{step1, Fun1}, {step2, Fun2}, {step3, Fun1}], 0)
             )
+        end},
+        {"Function raises an error", fun() ->
+            Fun1 = fun(Val) -> {ok, Val + 1} end,
+            Fun2 = fun(_Val) -> erlang:error("Bad CRC")  end,
+
+            ?assertEqual(
+                {error, step2, "Can't process data", 1},
+                epipe:run([{step1, Fun1}, {step2, Fun2}, {step3, Fun1}], 0)
+            )
+        end},
+        {"Function throws an error", fun() ->
+            Fun1 = fun(Val) -> {ok, Val + 1} end,
+            Fun2 = fun(_Val) -> throw("Terrible CRC")  end,
+
+            ?assertEqual(
+                {error, step2, "Can't process data", 1},
+                epipe:run([{step1, Fun1}, {step2, Fun2}, {step3, Fun1}], 0)
+            )
         end}
     ].
