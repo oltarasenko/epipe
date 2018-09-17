@@ -25,6 +25,8 @@ run([], State) ->
     {ok, State};
 run(FuncList, State) when erlang:is_tuple(State) ->
     run(FuncList, erlang:tuple_to_list(State));
+run(FuncList, State) when not erlang:is_list(State) ->
+    run(FuncList, [State]);
 run([{Label, Func} | Rest], State) ->
     case erlang:apply(Func, State) of
         ok                        -> {ok, Label, State};
